@@ -92,6 +92,7 @@ uv run python -m py_simple.main --api-url https://api.example.com --data-folder 
 ```
 
 **Command Line Arguments:**
+
 - `--api-url` - API endpoint URL (overrides `API_URL` environment variable)
 - `--data-folder` - Output directory for processed data (overrides `DATA_FOLDER` environment variable)
 
@@ -153,6 +154,8 @@ The project includes VS Code settings for:
 - Ruff (charliermarsh.ruff)
 
 ## Project Structure
+
+From <https://realpython.com/python-application-layouts/>
 
 ```
 py-simple/
