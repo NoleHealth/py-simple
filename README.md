@@ -1,9 +1,8 @@
 # py-simple
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Linting](https://img.shields.io/badge/linting-ruff-blue.svg)](https://github.com/astral-sh/ruff)
+[![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
+[![Code Style and Linting](https://img.shields.io/badge/linting-ruff-blue.svg)](https://github.com/astral-sh/ruff)
 [![Package Manager](https://img.shields.io/badge/package%20manager-uv-orange.svg)](https://github.com/astral-sh/uv)
 
 A simple Python template for API data processing and analysis. Fetch JSON data from public APIs, process it, and save results to local files.
@@ -14,7 +13,7 @@ A simple Python template for API data processing and analysis. Fetch JSON data f
 - **Configurable** via environment variables
 - **Data processing** with built-in statistics
 - **Organized output** with timestamped files
-- **Clean code** with Black formatting and Ruff linting
+- **Clean code** with Ruff linting and formatting
 - **Comprehensive docs** and examples
 - **VS Code ready** with pre-configured settings
 
@@ -74,20 +73,45 @@ LOG_LEVEL=INFO                                      # DEBUG, INFO, WARNING, ERRO
 
 **Note:** The application works with default values even without a `.env` file, but creating one allows you to customize the behavior for your specific needs.
 
+## Command Line Interface
+
+The application supports command-line arguments to override environment variables:
+
+```bash
+# Show help and available options
+uv run python -m py_simple.main --help
+
+# Override API URL
+uv run python -m py_simple.main --api-url https://jsonplaceholder.typicode.com/users
+
+# Override data folder
+uv run python -m py_simple.main --data-folder ./output
+
+# Combine multiple arguments
+uv run python -m py_simple.main --api-url https://api.example.com --data-folder ./custom
+```
+
+**Command Line Arguments:**
+- `--api-url` - API endpoint URL (overrides `API_URL` environment variable)
+- `--data-folder` - Output directory for processed data (overrides `DATA_FOLDER` environment variable)
+
 ## Usage Examples
 
 ```bash
 # Default usage (JSONPlaceholder posts)
 make run
 
-# Fetch different data
+# Using environment variables
 API_URL=https://jsonplaceholder.typicode.com/users make run
-
-# Custom output location
 DATA_FOLDER=my_data OUTPUT_PREFIX=api_ make run
-
-# Debug mode
 LOG_LEVEL=DEBUG make run
+
+# Using CLI arguments (recommended for one-time overrides)
+uv run python -m py_simple.main --api-url https://jsonplaceholder.typicode.com/users
+uv run python -m py_simple.main --data-folder ./output
+
+# Mix environment variables with CLI arguments (CLI takes priority)
+API_TIMEOUT=60 uv run python -m py_simple.main --api-url https://api.example.com
 ```
 
 ## Development
@@ -101,7 +125,7 @@ make install        # Install production dependencies
 make install-dev    # Install development dependencies
 make run            # Run the application
 make lint           # Run linting with auto-fix
-make format         # Format code with Black
+make format         # Format code with Ruff
 make test           # Run tests
 make clean          # Clean up build artifacts
 ```
@@ -111,8 +135,7 @@ make clean          # Clean up build artifacts
 This project uses modern Python tooling:
 
 - **[uv](https://github.com/astral-sh/uv)** - Fast Python package installer
-- **[Black](https://github.com/psf/black)** - Code formatting
-- **[Ruff](https://github.com/astral-sh/ruff)** - Fast Python linter
+- **[Ruff](https://github.com/astral-sh/ruff)** - Fast Python linter and code formatter
 - **[pytest](https://pytest.org)** - Testing framework
 
 ### VS Code Integration
@@ -120,14 +143,13 @@ This project uses modern Python tooling:
 The project includes VS Code settings for:
 
 - Python interpreter configuration
-- Auto-formatting on save with Black
+- Auto-formatting on save with Ruff
 - Linting with Ruff
 - Import organization
 
 **Recommended Extensions:**
 
 - Python (ms-python.python)
-- Black Formatter (ms-python.black-formatter)
 - Ruff (charliermarsh.ruff)
 
 ## Project Structure
@@ -181,11 +203,10 @@ See [Git Commands](docs/git-commands.md) for detailed workflow instructions.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is proprietary and not open source. All rights reserved.
 
 ## Acknowledgments
 
 - [JSONPlaceholder](https://jsonplaceholder.typicode.com/) - Free fake API for testing
 - [uv](https://github.com/astral-sh/uv) - Fast Python package installer
-- [Ruff](https://github.com/astral-sh/ruff) - Fast Python linter
-- [Black](https://github.com/psf/black) - Python code formatter
+- [Ruff](https://github.com/astral-sh/ruff) - Fast Python linter and code formatter

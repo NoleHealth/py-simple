@@ -7,14 +7,14 @@ name = "py-simple"
 version = "0.1.0"
 description = "A simple Python template for API data processing"
 readme = "README.md"
-license = {text = "MIT"}
+license = {text = "Proprietary"}
 authors = [
     {name = "Your Name", email = "your.email@example.com"}
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "License :: Proprietary License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -30,8 +30,8 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "ruff>=0.1.0",
-    "black>=23.0.0",
+
+    "ruff>=0.12.0",
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
 ]
@@ -68,7 +68,7 @@ select = [
     "UP", # pyupgrade
 ]
 ignore = [
-    "E501",  # line too long, handled by black
+    "E501",  # line too long, handled by ruff format
     "B008",  # do not perform function calls in argument defaults
     "C901",  # too complex
 ]
@@ -77,23 +77,6 @@ ignore = [
 "__init__.py" = ["F401"]
 "tests/*" = ["B011"]
 
-[tool.black]
-line-length = 88
-target-version = ['py38']
-include = '\.pyi?$'
-extend-exclude = '''
-/(
-  # directories
-  \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | build
-  | dist
-)/
-'''
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

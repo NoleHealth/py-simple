@@ -1,5 +1,6 @@
 """Main script for fetching and processing API data."""
 
+import argparse
 import json
 import logging
 import sys
@@ -10,6 +11,35 @@ from typing import Any, Dict, List
 import requests
 
 from .config import Config
+
+
+def parse_arguments() -> argparse.Namespace:
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Simple Python API data processor",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  %(prog)s                                    # Use default settings
+  %(prog)s --api-url https://api.example.com  # Override API URL
+  %(prog)s --data-folder ./output             # Override data folder
+  %(prog)s --api-url https://api.example.com --data-folder ./output
+        """
+    )
+
+    parser.add_argument(
+        '--api-url',
+        type=str,
+        help='API endpoint URL (overrides API_URL environment variable)'
+    )
+
+    parser.add_argument(
+        '--data-folder',
+        type=str,
+        help='Output directory for processed data (overrides DATA_FOLDER environment variable)'
+    )
+
+    return parser.parse_args()
 
 
 def setup_logging(log_level: str) -> logging.Logger:
@@ -104,8 +134,11 @@ def save_data(
 def main() -> None:
     """Main function."""
     try:
-        # Load configuration
-        config = Config()
+        # Parse command-line arguments
+        args = parse_arguments()
+
+        # Load configuration with CLI overrides
+        config = Config(api_url=args.api_url, data_folder=args.data_folder)
 
         # Set up logging
         logger = setup_logging(config.log_level)

@@ -43,11 +43,25 @@ test:  ## Run tests
 run:  ## Run the main script
 	uv run python -m py_simple.main
 
+run-cli-example:  ## Run with CLI arguments (example)
+	uv run python -m py_simple.main --api-url https://jsonplaceholder.typicode.com/users --data-folder ./example-output
+
 example:  ## Show example CLI usage
 	@echo "Example commands to run the CLI:"
-	@echo "  make run                    # Run with default settings"
-	@echo "  API_URL=https://api.example.com make run  # Override API URL"
-	@echo "  uv run python -m py_simple.main --help    # Show help"
+	@echo ""
+	@echo "Using make targets:"
+	@echo "  make run                             # Run with default settings"
+	@echo "  make run-cli-example                 # Run with CLI arguments example"
+	@echo ""
+	@echo "Using environment variables:"
+	@echo "  API_URL=https://api.example.com make run"
+	@echo "  DATA_FOLDER=custom make run"
+	@echo ""
+	@echo "Using CLI arguments directly:"
+	@echo "  uv run python -m py_simple.main --help"
+	@echo "  uv run python -m py_simple.main --api-url https://api.example.com"
+	@echo "  uv run python -m py_simple.main --data-folder ./output"
+	@echo "  uv run python -m py_simple.main --api-url https://api.example.com --data-folder ./output"
 
 clean:  ## Clean up build artifacts and cache
 	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
