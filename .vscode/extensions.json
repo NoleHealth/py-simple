@@ -3,6 +3,8 @@
     "charliermarsh.ruff",
     "ms-python.python",
     "usernamehw.errorlens",
-    "oderwat.indent-rainbow"
+    "oderwat.indent-rainbow",
+    "yzhang.markdown-all-in-one",
+    "gruntfuggly.todo-tree"
   ]
 }
